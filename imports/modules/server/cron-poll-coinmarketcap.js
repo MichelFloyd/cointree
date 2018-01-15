@@ -6,9 +6,9 @@ const limit = 2000; // the top 2000 currencies. As of this writing the API retur
 const url = `${api}${limit}`;
 
 SyncedCron.add({
-  name: 'Poll coinmarketcap API every minute',
+  name: 'Poll coinmarketcap API every 5 minutes',
   schedule(parser) {
-    return parser.text('every 1 minute');
+    return parser.text('every 5 minutes');
   },
   job() {
     HTTP.get(url, (err, response) => {

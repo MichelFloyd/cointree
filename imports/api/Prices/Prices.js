@@ -3,7 +3,7 @@
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 
-const Prices = new Mongo.Collection('Prices');
+const Prices = new Mongo.Collection('prices');
 
 Prices.allow({
   insert: () => false,
