@@ -16,17 +16,17 @@ SyncedCron.add({
         response.data.forEach((el) => {
           if (el.market_cap_usd) {
             const price = { id: el.id, name: el.name, symbol: el.symbol };
-            price.rank = parseInt(el.rank);
+            price.rank = parseInt(el.rank, 10);
             price.price_usd = parseFloat(el.price_usd);
             price.price_btc = parseFloat(el.price_btc);
-            if (el['24h_volume_usd']) price.volume_usd_24h = parseFloat(el['24h_volume_usd']);
+            price.volume_usd_24h = parseFloat(el['24h_volume_usd']) ? parseFloat(el['24h_volume_usd']) : 0;
             price.market_cap_usd = parseFloat(el.market_cap_usd);
             price.available_supply = parseFloat(el.available_supply);
             price.total_supply = parseFloat(el.total_supply);
-            if (el.max_supply) price.max_supply = parseFloat(el.max_supply);
-            if (el.percent_change_1h) price.percent_change_1h = parseFloat(el.percent_change_1h);
-            if (el.percent_change_24h) price.percent_change_24h = parseFloat(el.percent_change_24h);
-            if (el.percent_change_7d) price.percent_change_7d = parseFloat(el.percent_change_7d);
+            price.max_supply = parseFloat(el.max_supply) ? parseFloat(el.max_supply) : 0;
+            price.percent_change_1h = parseFloat(el.percent_change_1h) ? parseFloat(el.percent_change_1h) : 0;
+            price.percent_change_24h = parseFloat(el.percent_change_24h) ? parseFloat(el.percent_change_24h) : 0;
+            price.percent_change_7d = parseFloat(el.percent_change_7d) ? parseFloat(el.percent_change_7d) : 0;
             price.last_updated = new Date(parseFloat(el.last_updated * 1000));
             Prices.upsert({ id: price.id, last_updated: price.last_updated }, { $set: price });
           }
