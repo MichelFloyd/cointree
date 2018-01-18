@@ -33,7 +33,7 @@ const Prices = ({ loading, prices }) => (!loading ? (
             percent_change_1h, percent_change_24h, percent_change_7d, last_updated,
           }) => (
             <tr key={_id}>
-              <td>{symbol}</td>
+              <td><a href={'/prices/'+symbol}>{symbol}</a></td>
               <td>{price_usd}</td>
               <td>{market_cap_usd}</td>
               <td>{price_btc}</td>
