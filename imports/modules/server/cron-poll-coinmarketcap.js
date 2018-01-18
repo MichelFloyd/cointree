@@ -1,5 +1,6 @@
 import { HTTP } from 'meteor/http';
 import Prices from '../../api/Prices/Prices';
+import LatestPrices from '../../api/LatestPrices/LatestPrices';
 
 const api = 'https://api.coinmarketcap.com/v1/ticker/?limit=';
 const limit = 2000; // the top 2000 currencies. As of this writing the API returns 1442
@@ -28,7 +29,8 @@ SyncedCron.add({
             price.percent_change_24h = parseFloat(el.percent_change_24h) ? parseFloat(el.percent_change_24h) : 0;
             price.percent_change_7d = parseFloat(el.percent_change_7d) ? parseFloat(el.percent_change_7d) : 0;
             price.last_updated = new Date(parseFloat(el.last_updated * 1000));
-            Prices.upsert({ id: price.id, last_updated: price.last_updated }, { $set: price });
+            Prices.upsert({ id: price.id, last_updated: price.last_updated }, { $set: price }); // holds all historical prices
+            LatestPrices.upsert({ id: price.id }, { $set: price }); // holds just the most recent price
           }
         });
         console.log(Prices.find().count());

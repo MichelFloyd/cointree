@@ -17,7 +17,7 @@ Prices.deny({
   remove: () => true,
 });
 
-Prices.schema = new SimpleSchema({
+const schema = new SimpleSchema({
   id: { type: String, label: 'The coinmarketbase id' },
   name: { type: String, label: 'The name' },
   symbol: { type: String, label: 'The symbol' },
@@ -35,6 +35,7 @@ Prices.schema = new SimpleSchema({
   last_updated: { type: Date, label: 'Last Updated' },
 });
 
-Prices.attachSchema(Prices.schema);
+Prices.attachSchema(schema);
 
 export default Prices;
+export { schema as PricesSchema };
