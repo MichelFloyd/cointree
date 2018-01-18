@@ -4,7 +4,7 @@ import getPrivateFile from '../../../modules/server/get-private-file';
 import templateToHTML from '../../../modules/server/handlebars-email-to-html';
 import templateToText from '../../../modules/server/handlebars-email-to-text';
 
-const name = 'Application Name';
+const name = 'Cointree';
 const email = '<support@application.com>';
 const from = `${name} ${email}`;
 const { emailTemplates } = Accounts;

@@ -8,10 +8,10 @@ import Loading from '../../components/Loading/Loading';
 
 import './index.scss';
 
-const Prices = ({ loading, prices }) => (!loading ? (
+const Prices = ({ loading, prices, symbol }) => (!loading ? (
   <div className="Prices">
     <div className="page-header clearfix">
-      <h4 className="pull-left">Price History for {prices[0].symbol}</h4>
+      <h4 className="pull-left">Price History for {symbol}</h4>
     </div>
     {prices.length ?
       <Table responsive>
@@ -24,7 +24,7 @@ const Prices = ({ loading, prices }) => (!loading ? (
             <th>% Change 1h</th>
             <th>% Change 24h</th>
             <th>% Change 7d</th>
-            <th>Last Updated</th>
+            <th>Date/Time</th>
           </tr>
         </thead>
         <tbody>
@@ -51,13 +51,15 @@ const Prices = ({ loading, prices }) => (!loading ? (
 Prices.propTypes = {
   loading: PropTypes.bool.isRequired,
   prices: PropTypes.arrayOf(PropTypes.object).isRequired,
+  symbol: PropTypes.string.isRequired,
 };
 
 export default withTracker(({ match }) => {
-  const symbol = match.params.symbol;
+  const { symbol } = match.params;
   const subcription = Meteor.subscribe('symbol.history', symbol);
   return {
     loading: !subcription.ready(), // since collection is globally published
     prices: PricesCollection.find({ symbol }, { sort: { last_updated: -1 } }).fetch(),
+    symbol,
   };
 })(Prices);
