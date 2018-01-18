@@ -1,5 +1,3 @@
-/* eslint-disable consistent-return */
-
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 
@@ -17,7 +15,7 @@ Prices.deny({
   remove: () => true,
 });
 
-const schema = new SimpleSchema({
+Prices.schema = new SimpleSchema({
   id: { type: String, label: 'The coinmarketbase id' },
   name: { type: String, label: 'The name' },
   symbol: { type: String, label: 'The symbol' },
@@ -35,7 +33,6 @@ const schema = new SimpleSchema({
   last_updated: { type: Date, label: 'Last Updated' },
 });
 
-Prices.attachSchema(schema);
+Prices.attachSchema(Prices.schema);
 
 export default Prices;
-export { schema as PricesSchema };
