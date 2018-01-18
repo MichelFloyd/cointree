@@ -13,6 +13,7 @@ import Public from '../../components/Public/Public';
 import Index from '../../pages/Index/Index';
 import Documents from '../../pages/Documents/Documents';
 import LatestPrices from '../../pages/LatestPrices/LatestPrices';
+import Prices from '../../pages/Prices/Prices';
 import NewDocument from '../../pages/NewDocument/NewDocument';
 import ViewDocument from '../../pages/ViewDocument/ViewDocument';
 import EditDocument from '../../pages/EditDocument/EditDocument';
@@ -53,7 +54,7 @@ const App = props => (
             <Authenticated exact path="/documents/:_id" component={ViewDocument} {...props} />
             <Authenticated exact path="/documents/:_id/edit" component={EditDocument} {...props} />
             <Authenticated exact path="/latestPrices" component={LatestPrices} {...props} />
-            <Authenticated exact path="/prices/:id" component={LatestPrices} {...props} />
+            <Authenticated exact path="/prices/:symbol" component={Prices} {...props} />
             <Authenticated exact path="/profile" component={Profile} {...props} />
             <Public path="/signup" component={Signup} {...props} />
             <Public path="/login" component={Login} {...props} />

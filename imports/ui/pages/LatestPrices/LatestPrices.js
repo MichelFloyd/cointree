@@ -8,7 +8,7 @@ import Loading from '../../components/Loading/Loading';
 import './index.scss';
 
 const Prices = ({ loading, prices }) => (!loading ? (
-  <div className="Prices">
+  <div className="LatestPrices">
     <div className="page-header clearfix">
       <h4 className="pull-left">Prices</h4>
     </div>
