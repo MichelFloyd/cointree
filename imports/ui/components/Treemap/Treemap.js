@@ -12,9 +12,10 @@ const Treemap = ({ loading, data }) => (!loading ? (
   <div className="Treemap">
     <TreeMap
       height={500}
-      width={800}
+      width={window.innerWidth - 80}
       data={data}
       valueUnit={'USD'}
+      disableBreadcrumb
     />
   </div>
 ) : <Loading />);
@@ -26,9 +27,9 @@ Treemap.propTypes = {
 
 export default withTracker(() => {
   const prices = LatestPrices.find().fetch();
-  const data = { name: 'flare', children: [] };
+  const data = { name: 'Crypto-currencies', children: [] };
   prices.forEach((price) => {
-    data.children.push({ name: price.symbol, value: price.market_cap_usd });
+    data.children.push({ name: price.symbol, value: price.market_cap_usd, link: `/prices/${price.symbol}` });
   });
 
   return {
