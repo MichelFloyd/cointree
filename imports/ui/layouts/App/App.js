@@ -11,6 +11,7 @@ import Navigation from '../../components/Navigation/Navigation';
 import Authenticated from '../../components/Authenticated/Authenticated';
 import Public from '../../components/Public/Public';
 import Index from '../../pages/Index/Index';
+import Treemap from '../../components/Treemap/Treemap';
 import Documents from '../../pages/Documents/Documents';
 import LatestPrices from '../../pages/LatestPrices/LatestPrices';
 import Prices from '../../pages/Prices/Prices';
@@ -48,7 +49,7 @@ const App = props => (
         <Navigation {...props} />
         <Grid>
           <Switch>
-            <Route exact name="index" path="/" component={Index} />
+            <Route exact name="index" path="/" component={Treemap} />
             <Authenticated exact path="/documents" component={Documents} {...props} />
             <Authenticated exact path="/documents/new" component={NewDocument} {...props} />
             <Authenticated exact path="/documents/:_id" component={ViewDocument} {...props} />
