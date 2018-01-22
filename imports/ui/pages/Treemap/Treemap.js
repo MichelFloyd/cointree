@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import Loading from '../../components/Loading/Loading';
 import LatestPrices from '../../../api/LatestPrices/LatestPrices';
-import TreeMap from '../D3/Treemap/Treemap';
+import TreeMap from '../../components/D3/Treemap/Treemap';
 
 import './index.scss';
 
