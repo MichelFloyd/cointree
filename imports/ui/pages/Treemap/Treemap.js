@@ -14,6 +14,8 @@ const Treemap = ({ loading, data }) => (!loading ? (
       width={window.innerWidth - 80}
       data={data}
       valueUnit="USD"
+      textColor="#222"
+      fontSize={14}
     />
   </div>
 ) : <Loading />);

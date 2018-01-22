@@ -41,7 +41,9 @@ Treemap.defaultProps = {
   data: [],
   width: 400,
   height: 200,
-  margins: { left: 0, right: 0, top: 0, bottom: 0 },
+  margins: {
+    left: 0, right: 0, top: 0, bottom: 0,
+  },
   title: '',
   textColor: '#f7f7f7',
   fontSize: '0.85em',
