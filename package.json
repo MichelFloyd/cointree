@@ -11,6 +11,7 @@
     "bcrypt": "^1.0.3",
     "commonmark": "^0.28.1",
     "core-js": "^2.5.1",
+    "d3": "^3.5.17",
     "handlebars": "^4.0.11",
     "jquery": "^2.2.4",
     "jquery-validation": "^1.17.0",

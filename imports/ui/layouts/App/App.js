@@ -11,7 +11,7 @@ import Navigation from '../../components/Navigation/Navigation';
 import Authenticated from '../../components/Authenticated/Authenticated';
 import Public from '../../components/Public/Public';
 import Index from '../../pages/Index/Index';
-import Treemap from '../../components/Treemap/Treemap';
+import Treemap from '../../components/Treemap/Treemap3';
 import Documents from '../../pages/Documents/Documents';
 import LatestPrices from '../../pages/LatestPrices/LatestPrices';
 import Prices from '../../pages/Prices/Prices';
