@@ -8,7 +8,7 @@ const Cell = ((props) => {
     fontSize: props.fontSize,
   };
 
-  const t = `translate(${props.x}, ${props.y}  )`;
+  const t = `translate(${props.x},${props.y})`;
 
   return (
     <g transform={t}>

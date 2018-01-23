@@ -21,7 +21,11 @@ const DataSeries = ((props) => {
       width={node.dx}
       height={node.dy}
       fill={props.colors(props.colorAccessor(node, idx))}
-      label={props.fontSize < 0.8 * node.dy && props.fontSize < node.dx/3 ? node.label : ''}
+      label={
+        props.fontSize < 0.9 * node.dy &&
+        node.label &&
+        props.fontSize * node.label.length < 0.9 * node.dx ? node.label :''
+      }
       fontSize={props.fontSize}
       textColor={props.textColor}
       hoverAnimation={props.hoverAnimation}
@@ -41,7 +45,7 @@ DataSeries.propTypes = {
   colorAccessor: PropTypes.func,
   width: PropTypes.number,
   height: PropTypes.number,
-  fontSize: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
+  fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 DataSeries.defaultProps = {
