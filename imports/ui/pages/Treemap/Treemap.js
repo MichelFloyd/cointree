@@ -31,7 +31,7 @@ Treemap.propTypes = {
 export default withTracker(() => {
   const prices = LatestPrices.find().fetch();
   const data = [];
-  let colorAccessor = p => p.percent_change_1h;
+  let colorAccessor = p => p.percent_change_7d;
 
   let min = prices && prices[0] && colorAccessor(prices[0]);
   let max = min;
@@ -43,10 +43,10 @@ export default withTracker(() => {
     }
   });
 
-  const colors = d3.scale.linear()
-    .domain([-2, 2])
-    .range(["red", "green"]);
-
+  const colors = (v) => {
+    if (v<0) return d3.scale.linear().domain([-2,Math.log10(-min)]).range(['#ddd', 'red'])(Math.log(-v));
+    return d3.scale.linear().domain([-2, Math.log10(max)]).range(['#ddd', 'green'])(Math.log(v));
+  };
   colorAccessor = p => p.value2;
 
   return {
