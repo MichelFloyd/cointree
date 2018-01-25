@@ -15,7 +15,7 @@ const Treemap = ({ loading, data, colorAccessor, colors }) => (!loading ? (
       width={window.innerWidth - 80}
       data={data}
       valueUnit="USD"
-      textColor="#222"
+      textColor="#ccc"
       fontSize={14}
       colors={colors}
       colorAccessor={colorAccessor}
@@ -44,8 +44,8 @@ export default withTracker(() => {
   });
 
   const colors = (v) => {
-    if (v<0) return d3.scale.linear().domain([-2,Math.log10(-min)]).range(['#ddd', 'red'])(Math.log(-v));
-    return d3.scale.linear().domain([-2, Math.log10(max)]).range(['#ddd', 'green'])(Math.log(v));
+    if (v < 0) return d3.scale.linear().domain([-2, Math.log10(-min)]).range(['#000', 'red'])(Math.log(-v));
+    return d3.scale.linear().domain([-2, Math.log10(max)]).range(['000', 'green'])(Math.log(v));
   };
   colorAccessor = p => p.value2;
 
