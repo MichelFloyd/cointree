@@ -24,8 +24,8 @@ const DataSeries = ((props) => {
       label={
         props.fontSize < 0.9 * node.dy &&
         node.label &&
-        props.fontSize * node.label.length < 0.9 * node.dx ? node.label :''
-      }
+        props.fontSize * node.label.length < 0.9 * node.dx ? node.label : ''
+      } // all this to ensure the symbol will fit in the cell
       fontSize={props.fontSize}
       textColor={props.textColor}
       hoverAnimation={props.hoverAnimation}
