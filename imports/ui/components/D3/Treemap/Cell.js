@@ -16,6 +16,7 @@ const Cell = ((props) => {
         className="rd3-treemap-cell"
         width={props.width}
         height={props.height}
+        style={{ stroke: props.textColor}}
         fill={props.fill}
         onMouseOver={props.handleMouseOver}
         onMouseLeave={props.handleMouseLeave}

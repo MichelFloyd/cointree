@@ -54,9 +54,9 @@ const App = props => (
             <Authenticated exact path="/documents/new" component={NewDocument} {...props} />
             <Authenticated exact path="/documents/:_id" component={ViewDocument} {...props} />
             <Authenticated exact path="/documents/:_id/edit" component={EditDocument} {...props} />
-            <Authenticated exact path="/latestPrices" component={LatestPrices} {...props} />
-            <Authenticated exact path="/prices/:symbol" component={Prices} {...props} />
-            <Authenticated exact path="/profile" component={Profile} {...props} />
+            <Public exact path="/latestPrices" component={LatestPrices} {...props} />
+            <Public exact path="/prices/:symbol" component={Prices} {...props} />
+            <Public exact path="/profile" component={Profile} {...props} />
             <Public path="/signup" component={Signup} {...props} />
             <Public path="/login" component={Login} {...props} />
             <Route path="/logout" component={Logout} {...props} />
