@@ -16,10 +16,11 @@ class Treemap extends React.Component {
     this.setColor = this.setColor.bind(this);
 
     this.sizeMenu = ['Market Cap', 'Volume 24'];
-    this.colorMenu = ['1h Change', '24h Change', '7d Change']
+    this.colorMenu = ['1h Change', '24h Change', '7d Change'];
     this.sizeSelectorOptions = ['market_cap_usd', 'volume_usd_24h'];
     this.colorSelectorOptions = ['percent_change_1h', 'percent_change_24h', 'percent_change_7d'];
   
+    const { data, colors, totalCap, vol24h } = this.getData();
     this.state = {
       radioSize: 0,
       radioColor: 0,
@@ -30,31 +31,26 @@ class Treemap extends React.Component {
     };
   }
 
-  componentWillMount() {
-    const { data, colors, totalCap, vol24h } = this.getData();
-    this.setState({ data, colors, totalCap, vol24h });  
-  }
-
   setSize(ekey) {
+    console.log(ekey);
     this.setState({ radioSize: ekey - 1 });
-    //this.setState({ data: []});
     const { data, colors, totalCap, vol24h } = this.getData();
     this.setState({ data, colors, totalCap, vol24h });
   }
 
   setColor(ekey) {
+    console.log(ekey);
     this.setState({ radioColor: ekey - 1 });
-    //this.setState({ data: []});
     const { data, colors, totalCap, vol24h } = this.getData();
     this.setState({ data, colors, totalCap, vol24h });
   }
 
   getData() {
     const { prices } = this.props;
-    const sizeSelector = this.sizeSelectorOptions[this.state.radioSize];
-    const colorSelector = this.colorSelectorOptions[this.state.radioColor];
+    const sizeSelector = this.sizeSelectorOptions[this.state && this.state.radioSize && 0];
+    const colorSelector = this.colorSelectorOptions[this.state && this.state.radioColor && 0];
 
-    console.log(`Updating with size: ${sizeSelector} color: ${colorSelector}`);
+    console.log(`Updating ${prices.length} prices with size: ${sizeSelector} color: ${colorSelector}`);
     const data = [];
     const colorAccessor = p => p[colorSelector];
   
