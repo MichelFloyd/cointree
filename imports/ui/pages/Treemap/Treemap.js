@@ -2,12 +2,18 @@ import React from 'react';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
+import { ReactiveVar } from 'meteor/reactive-var';
 import d3 from 'd3';
 import Loading from '../../components/Loading/Loading';
 import LatestPrices from '../../../api/LatestPrices/LatestPrices';
 import TreeMap from '../../components/D3/Treemap/Treemap';
 
 import './index.scss';
+
+const sizeSelectorOptions = ['market_cap_usd', 'volume_usd_24h'];
+const colorSelectorOptions = ['percent_change_1h', 'percent_change_24h', 'percent_change_7d'];
+const sizeSelector = new ReactiveVar(sizeSelectorOptions[0]);
+const colorSelector = new ReactiveVar(colorSelectorOptions[0]);
 
 class Treemap extends React.Component {
   constructor(props, context) {
@@ -26,10 +32,12 @@ class Treemap extends React.Component {
 
   setSize(ekey) {
     this.setState({ radioSize: ekey - 1 });
+    sizeSelector.set(sizeSelectorOptions[ekey - 1]);
   }
 
   setColor(ekey) {
     this.setState({ radioColor: ekey - 1 });
+    colorSelector.set(colorSelectorOptions[ekey - 1]);
   }
 
   render() {
@@ -77,7 +85,7 @@ Treemap.propTypes = {
 export default withTracker(() => {
   const prices = LatestPrices.find().fetch();
   const data = [];
-  let colorAccessor = p => p.percent_change_7d;
+  let colorAccessor = p => p[colorSelector.get()];
 
   let min = prices && prices[0] && colorAccessor(prices[0]);
   let max = min;
@@ -85,7 +93,7 @@ export default withTracker(() => {
   let vol24h = 0;
   prices.forEach((price) => {
     if (price.market_cap_usd > 50000000) {
-      data.push({ label: price.symbol, value: price.volume_usd_24h, link: `/prices/${price.symbol}`, value2: colorAccessor(price) });
+      data.push({ label: price.symbol, value: price[sizeSelector.get()], link: `/prices/${price.symbol}`, value2: colorAccessor(price) });
       if (colorAccessor(price) < min) min = colorAccessor(price);
       if (colorAccessor(price) > max) max = colorAccessor(price);
     }
@@ -105,6 +113,6 @@ export default withTracker(() => {
     colorAccessor,
     colors,
     totalCap,
-    vol24h
+    vol24h,
   };
 })(Treemap);
