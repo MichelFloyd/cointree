@@ -13,24 +13,28 @@ const DataSeries = ((props) => {
 
   const tree = treemap(props.data);
 
-  const cells = tree.map((node, idx) => (
-    <CellContainer
-      key={idx}
-      x={node.x}
-      y={node.y}
-      width={node.dx}
-      height={node.dy}
-      fill={props.colors(props.colorAccessor(node, idx))}
-      label={
-        props.fontSize < 0.9 * node.dy &&
-        node.label &&
-        props.fontSize * node.label.length < 0.9 * node.dx ? node.label : ''
-      } // all this to ensure the symbol will fit in the cell
-      fontSize={props.fontSize}
-      textColor={props.textColor}
-      hoverAnimation={props.hoverAnimation}
-    />
-  ), this);
+  const cells = tree.map((node, idx) => {
+    const color = props.colors(props.colorAccessor(node, idx));
+    if (idx == 3) console.log(`node 3 ${node.label} is ${color}`);
+    return (
+      <CellContainer
+        key={idx}
+        x={node.x}
+        y={node.y}
+        width={node.dx}
+        height={node.dy}
+        fill={color}
+        label={
+          props.fontSize < 0.9 * node.dy &&
+          node.label &&
+          props.fontSize * node.label.length < 0.9 * node.dx ? node.label : ''
+        } // all this to ensure the symbol will fit in the cell
+        fontSize={props.fontSize}
+        textColor={props.textColor}
+        hoverAnimation={props.hoverAnimation}
+      />
+    );
+  }, this);
 
   return (
     <g transform={props.transform} className="treemap">

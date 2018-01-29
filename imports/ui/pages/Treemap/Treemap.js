@@ -2,6 +2,7 @@ import React from 'react';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
 import d3 from 'd3';
 import Loading from '../../components/Loading/Loading';
 import LatestPrices from '../../../api/LatestPrices/LatestPrices';
@@ -34,21 +35,30 @@ class Treemap extends React.Component {
   setSize(ekey) {
     console.log(ekey);
     this.setState({ radioSize: ekey - 1 });
-    const { data, colors, totalCap, vol24h } = this.getData();
-    this.setState({ data, colors, totalCap, vol24h });
+    Meteor.defer(() => {
+      const { data, colors, totalCap, vol24h } = this.getData();
+      this.setState({ data, colors, totalCap, vol24h });
+    });
   }
 
   setColor(ekey) {
     console.log(ekey);
     this.setState({ radioColor: ekey - 1 });
-    const { data, colors, totalCap, vol24h } = this.getData();
-    this.setState({ data, colors, totalCap, vol24h });
+    Meteor.defer(() => {
+      const { data, colors, totalCap, vol24h } = this.getData();
+      this.setState({ data, colors, totalCap, vol24h });
+    });
   }
 
   getData() {
     const { prices } = this.props;
-    const sizeSelector = this.sizeSelectorOptions[this.state && this.state.radioSize && 0];
-    const colorSelector = this.colorSelectorOptions[this.state && this.state.radioColor && 0];
+    let sizeSelector = this.sizeSelectorOptions[0];
+    let colorSelector = this.colorSelectorOptions[0];
+
+    if (this.state) {
+      sizeSelector = this.sizeSelectorOptions[this.state.radioSize];
+      colorSelector = this.colorSelectorOptions[this.state.radioColor];
+    }
 
     console.log(`Updating ${prices.length} prices with size: ${sizeSelector} color: ${colorSelector}`);
     const data = [];

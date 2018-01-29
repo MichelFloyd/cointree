@@ -28,7 +28,7 @@ class CellContainer extends React.Component {
     return (
       <Cell
         {...props}
-        fill={this.state.fill}
+        fill={this.props.fill}
         handleMouseOver={props.hoverAnimation ? this._animateCell : null}
         handleMouseLeave={props.hoverAnimation ? this._restoreCell : null}
       />
