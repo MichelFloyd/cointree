@@ -60,7 +60,6 @@ class Treemap extends React.Component {
       colorSelector = this.colorSelectorOptions[this.state.radioColor];
     }
 
-    console.log(`Updating ${prices.length} prices with size: ${sizeSelector} color: ${colorSelector}`);
     const data = [];
     const colorAccessor = p => p[colorSelector];
   

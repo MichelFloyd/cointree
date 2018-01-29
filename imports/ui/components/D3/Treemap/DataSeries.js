@@ -15,7 +15,6 @@ const DataSeries = ((props) => {
 
   const cells = tree.map((node, idx) => {
     const color = props.colors(props.colorAccessor(node, idx));
-    if (idx == 3) console.log(`node 3 ${node.label} is ${color}`);
     return (
       <CellContainer
         key={idx}

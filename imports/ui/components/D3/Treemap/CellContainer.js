@@ -37,7 +37,7 @@ class CellContainer extends React.Component {
 }
 
 CellContainer.propTypes = {
-  fill: PropTypes.string,
+  fill: PropTypes.string.isRequired,
 };
 
 export default CellContainer;
