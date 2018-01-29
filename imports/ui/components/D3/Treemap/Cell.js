@@ -18,7 +18,7 @@ class Cell extends React.Component {
   highlight() {
     this.setState({
       style: {
-        stroke: 'yellow',
+        stroke: 'white',
         strokeWidth: '3px',
       },
     });
