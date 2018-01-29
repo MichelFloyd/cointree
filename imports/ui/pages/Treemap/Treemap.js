@@ -33,7 +33,6 @@ class Treemap extends React.Component {
   }
 
   setSize(ekey) {
-    console.log(ekey);
     this.setState({ radioSize: ekey - 1 });
     Meteor.defer(() => {
       const { data, colors, totalCap, vol24h } = this.getData();
@@ -42,7 +41,6 @@ class Treemap extends React.Component {
   }
 
   setColor(ekey) {
-    console.log(ekey);
     this.setState({ radioColor: ekey - 1 });
     Meteor.defer(() => {
       const { data, colors, totalCap, vol24h } = this.getData();

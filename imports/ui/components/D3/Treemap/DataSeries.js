@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes, { string } from 'prop-types';
+import PropTypes from 'prop-types';
 import d3 from 'd3';
-import CellContainer from './CellContainer';
+import Cell from './Cell';
 
 const DataSeries = ((props) => {
   const treemap = d3.layout.treemap()
@@ -16,7 +16,7 @@ const DataSeries = ((props) => {
   const cells = tree.map((node, idx) => {
     const color = props.colors(props.colorAccessor(node, idx));
     return (
-      <CellContainer
+      <Cell
         key={idx}
         x={node.x}
         y={node.y}
