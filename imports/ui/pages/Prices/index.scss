@@ -1,1 +1,5 @@
-.Prices td { text-align: right }
+.Prices {
+  td { text-align: right }
+  .down { color: red }
+  .up { color: green }
+}

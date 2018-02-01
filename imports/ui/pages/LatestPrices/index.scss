@@ -1,1 +1,5 @@
-.LatestPrices td { text-align: right }
+.LatestPrices {
+  td { text-align: right }
+  .down { color: red }
+  .up { color: green }
+}

@@ -22,10 +22,10 @@ const Prices = ({ loading, prices }) => (!loading ? (
             <th>Market Cap</th>
             <th>Price BTC</th>
             <th>Volume USD 24h</th>
+            <th>% Change Last</th>
             <th>% Change 1h</th>
             <th>% Change 24h</th>
             <th>% Change 7d</th>
-            <th>% Change Last</th>
             <th>Last Updated</th>
           </tr>
         </thead>
@@ -41,10 +41,10 @@ const Prices = ({ loading, prices }) => (!loading ? (
               <td>{market_cap_usd}</td>
               <td>{price_btc}</td>
               <td>{volume_usd_24h}</td>
-              <td>{percent_change_1h}</td>
-              <td>{percent_change_24h}</td>
-              <td>{percent_change_7d}</td>
-              <td>{percent_change_last}</td>
+              <td className={percent_change_last < 0 ? 'down' : 'up'}>{percent_change_last}</td>
+              <td className={percent_change_1h < 0 ? 'down' : 'up'}>{percent_change_1h}</td>
+              <td className={percent_change_24h < 0 ? 'down' : 'up'}>{percent_change_24h}</td>
+              <td className={percent_change_7d < 0 ? 'down' : 'up'}>{percent_change_7d}</td>
               <td>{last_updated.toLocaleDateString()} {last_updated.toLocaleTimeString()}</td>
             </tr>
           ))}
