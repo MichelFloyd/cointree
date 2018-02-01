@@ -17,7 +17,7 @@ class Treemap extends React.Component {
     this.setColor = this.setColor.bind(this);
 
     this.sizeMenu = ['Market Cap', 'Volume 24'];
-    this.colorMenu = ['5min Change', '1h Change', '24h Change', '7d Change'];
+    this.colorMenu = ['Last Change', '1h Change', '24h Change', '7d Change'];
     this.sizeSelectorOptions = ['market_cap_usd', 'volume_usd_24h'];
     this.colorSelectorOptions = ['percent_change_last', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d'];
 
@@ -133,7 +133,7 @@ Treemap.propTypes = {
 export default withTracker(() => {
   const sub = Meteor.subscribe('latestPrices');
   return {
-    loading: !sub.ready(), // TBD: need to wait for a real subscription here
+    loading: !sub.ready(),
     prices: LatestPrices.find().fetch(),
   };
 })(Treemap);
