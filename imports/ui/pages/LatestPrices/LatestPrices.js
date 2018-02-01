@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
 import { Table, Alert } from 'react-bootstrap';
 import { withTracker } from 'meteor/react-meteor-data';
 import PricesCollection from '../../../api/LatestPrices/LatestPrices';
@@ -24,13 +25,15 @@ const Prices = ({ loading, prices }) => (!loading ? (
             <th>% Change 1h</th>
             <th>% Change 24h</th>
             <th>% Change 7d</th>
+            <th>% Change Last</th>
             <th>Last Updated</th>
           </tr>
         </thead>
         <tbody>
           {prices.map(({
             _id, symbol, price_usd, market_cap_usd, price_btc, volume_usd_24h,
-            percent_change_1h, percent_change_24h, percent_change_7d, last_updated,
+            percent_change_1h, percent_change_24h, percent_change_7d,
+            percent_change_last, last_updated,
           }) => (
             <tr key={_id}>
               <td><a href={'/prices/'+symbol}>{symbol}</a></td>
@@ -41,6 +44,7 @@ const Prices = ({ loading, prices }) => (!loading ? (
               <td>{percent_change_1h}</td>
               <td>{percent_change_24h}</td>
               <td>{percent_change_7d}</td>
+              <td>{percent_change_last}</td>
               <td>{last_updated.toLocaleDateString()} {last_updated.toLocaleTimeString()}</td>
             </tr>
           ))}
@@ -55,8 +59,9 @@ Prices.propTypes = {
 };
 
 export default withTracker(() => {
+  const sub = Meteor.subscribe('latestPrices');
   return {
-    loading: false, // since collection is globally published
+    loading: !sub.ready(), // since collection is globally published
     prices: PricesCollection.find({}, { sort: { market_cap_usd: -1 } }).fetch(),
   };
 })(Prices);

@@ -30,6 +30,7 @@ Prices.schema = new SimpleSchema({
   percent_change_1h: { type: Number, label: 'Percent change 1h' },
   percent_change_24h: { type: Number, label: 'Percent change 24h' },
   percent_change_7d: { type: Number, label: 'Percent change 7d' },
+  percent_change_last: { type: Number, label: 'Percent change last' },
   last_updated: { type: Date, label: 'Last Updated' },
 });
 
