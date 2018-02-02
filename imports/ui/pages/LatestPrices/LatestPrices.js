@@ -22,7 +22,7 @@ const Prices = ({ loading, prices }) => (!loading ? (
             <th>Market Cap</th>
             <th>Price BTC</th>
             <th>Volume USD 24h</th>
-            <th>% Change Last</th>
+            <th>% Last Change</th>
             <th>% Change 1h</th>
             <th>% Change 24h</th>
             <th>% Change 7d</th>
