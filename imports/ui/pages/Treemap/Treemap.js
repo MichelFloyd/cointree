@@ -16,7 +16,7 @@ class Treemap extends React.Component {
     this.setSize = this.setSize.bind(this);
     this.setColor = this.setColor.bind(this);
 
-    this.sizeMenu = ['Market Cap', 'Volume 24'];
+    this.sizeMenu = ['Market Cap', 'Volume 24h'];
     this.colorMenu = ['Last Change', '1h Change', '24h Change', '7d Change'];
     this.sizeSelectorOptions = ['market_cap_usd', 'volume_usd_24h'];
     this.colorSelectorOptions = ['percent_change_last', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d'];

@@ -5,6 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PricesCollection from '../../../api/Prices/Prices';
 import Loading from '../../components/Loading/Loading';
+import formatCurrency from '../../../modules/format-currency';
 
 import './index.scss';
 
@@ -35,9 +36,9 @@ const Prices = ({ loading, prices, symbol }) => (!loading ? (
           }) => (
             <tr key={_id}>
               <td>{price_usd}</td>
-              <td>{market_cap_usd}</td>
+              <td>{formatCurrency(market_cap_usd)}</td>
               <td>{price_btc}</td>
-              <td>{volume_usd_24h}</td>
+              <td>{formatCurrency(volume_usd_24h)}</td>
               <td className={percent_change_last < 0 ? 'down' : 'up'}>{percent_change_last}</td>
               <td className={percent_change_1h < 0 ? 'down' : 'up'}>{percent_change_1h}</td>
               <td className={percent_change_24h < 0 ? 'down' : 'up'}>{percent_change_24h}</td>
