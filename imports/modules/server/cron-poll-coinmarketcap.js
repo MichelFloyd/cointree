@@ -8,13 +8,18 @@ const url = `${api}${limit}`;
 const minMarketCap = 50000000; // only track currencies worth over $50M
 
 SyncedCron.add({
-  name: 'Poll coinmarketcap API every 5 minutes',
+  name: 'Poll coinmarketcap API every 3 minutes',
   schedule(parser) {
-    return parser.text('every 5 minutes');
+    return parser.text('every 3 minutes');
   },
   job() {
     HTTP.get(url, (err, response) => {
       if (!err) {
+
+        // use bulk upserts, see https://forums.meteor.com/t/bulk-upsert-issue-with-mongo-id-solved/31807
+        const Bulk1 = Prices._collection.rawCollection().initializeUnorderedBulkOp();
+        const Bulk2 = LatestPrices._collection.rawCollection().initializeUnorderedBulkOp();
+
         response.data.forEach((el) => {
           if (el.market_cap_usd) {
             const price = { id: el.id, name: el.name, symbol: el.symbol };
@@ -44,12 +49,15 @@ SyncedCron.add({
                 price.percent_change_last = parseFloat(Math.round(price.percent_change_last * 100) / 100).toFixed(2);
               }
 
-              Prices.upsert({ id: price.id, last_updated: price.last_updated }, { $set: price }); // holds all historical prices
-              LatestPrices.upsert({ id: price.id }, { $set: price }); // holds just the most recent price
+              Bulk1.find({ id: price.id, last_updated: price.last_updated }).upsert().replaceOne(price);
+              Bulk2.find({ id: price.id }).upsert().replaceOne(price);
             }
           }
         });
-        console.log(Prices.find().count());
+        Bulk1.execute((execErr, result) =>
+          console.log(`${result.nInserted} Prices inserted, ${result.nUpserted} upserted`));
+        Bulk2.execute((execErr, result) =>
+          console.log(`${result.nInserted} LatestPrices inserted, ${result.nUpserted} upserted`));
       } else console.log(err);
     });
   },
