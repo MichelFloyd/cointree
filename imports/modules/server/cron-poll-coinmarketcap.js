@@ -55,9 +55,9 @@ SyncedCron.add({
           }
         });
         Bulk1.execute((execErr, result) =>
-          console.log(`${result.nInserted} Prices inserted, ${result.nUpserted} upserted`));
+          console.log(`${result.nUpserted} Prices upserted`));
         Bulk2.execute((execErr, result) =>
-          console.log(`${result.nInserted} LatestPrices inserted, ${result.nUpserted} upserted`));
+          console.log(`${result.nUpserted} LatestPrices upserted, ${result.nModified} modified`));
       } else console.log(err);
     });
   },
