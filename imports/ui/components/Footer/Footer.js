@@ -13,11 +13,14 @@ const copyrightYear = () => {
 const Footer = () => (
   <div className="Footer">
     <Grid>
-      <p className="pull-left">&copy; {copyrightYear()} Cointree</p>
-      <ul className="pull-right">
+      <p className="pull-left">
+        &copy; {copyrightYear()} Cointree by Cloak Security.
+        Data provided by <a href='https://coinmarketcap.com/'>CoinMarketCap</a>
+      </p>
+      {/* <ul className="pull-right">
         <li><Link to="/terms">Terms<span className="hidden-xs"> of Service</span></Link></li>
         <li><Link to="/privacy">Privacy<span className="hidden-xs"> Policy</span></Link></li>
-      </ul>
+      </ul> */}
     </Grid>
   </div>
 );

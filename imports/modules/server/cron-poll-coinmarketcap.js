@@ -49,6 +49,7 @@ SyncedCron.add({
             }
           }
         });
+        console.log(Prices.find().count());
       } else console.log(err);
     });
   },

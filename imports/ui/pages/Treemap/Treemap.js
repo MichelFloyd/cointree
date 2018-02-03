@@ -71,16 +71,15 @@ class Treemap extends React.Component {
     let totalCap = 0;
     let vol24h = 0;
     prices.forEach((price) => {
-      if (price.market_cap_usd > 50e6) {
-        data.push({
-          label: price.symbol,
-          value: price[sizeSelector],
-          link: `/prices/${price.symbol}`,
-          value2: colorAccessor(price),
-        });
-        if (colorAccessor(price) < min) min = colorAccessor(price);
-        if (colorAccessor(price) > max) max = colorAccessor(price);
-      }
+      data.push({
+        label: price.symbol,
+        value: price[sizeSelector],
+        link: `/prices/${price.symbol}`,
+        value2: colorAccessor(price),
+      });
+      if (colorAccessor(price) < min) min = colorAccessor(price);
+      if (colorAccessor(price) > max) max = colorAccessor(price);
+
       totalCap += price.market_cap_usd;
       vol24h += price.volume_usd_24h;
     });
