@@ -20,9 +20,9 @@ const SymbolPopup = ({ data }) => (
     Total: <em>{formatCurrency(data.total_supply)}</em>&nbsp;
     Max: <em>{formatCurrency(data.max_supply)}</em><br />
     % Last Change: {upDown(data.percent_change_last)}&nbsp;
-    % Change 1h: {upDown(data.percent_change_1h)}<br />
-    % Change 24h: {upDown(data.percent_change_24h)}&nbsp;
-    % Change 7d: {upDown(data.percent_change_7d)}<br />
+    1h: {upDown(data.percent_change_1h)}&nbsp;
+    24h: {upDown(data.percent_change_24h)}&nbsp;
+    7d: {upDown(data.percent_change_7d)}<br />
     Last Updated: <em>{data.last_updated.toLocaleDateString()} {data.last_updated.toLocaleTimeString()}</em>
   </div>
 );

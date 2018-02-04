@@ -50,7 +50,7 @@ const Prices = ({ loading, prices }) => (!loading ? (
             </tr>
           ))}
         </tbody>
-      </Table> : <Alert bsStyle="warning">No prices yet!</Alert>}
+      </Table> : <Alert bsStyle="warning">Waiting for prices...</Alert>}
   </div>
 ) : <Loading />);
 

@@ -5,19 +5,15 @@ import Chart from '../Charts/Chart';
 import DataSeries from './DataSeries';
 
 const Treemap = (props) => {
-  return props.data && props.data.length < 1 ? null : (
-    <Chart title={props.title} width={props.width} height={props.height}>
+  const { data, title, height, width, ...other } = props;
+  return data && data.length < 1 ? null : (
+    <Chart title={title} width={width} height={height}>
       <g className="rd3-treemap">
         <DataSeries
-          data={props.data}
-          width={props.width}
-          height={props.height}
-          colors={props.colors}
-          colorAccessor={props.colorAccessor}
-          textColor={props.textColor}
-          fontSize={props.fontSize}
-          hoverAnimation={props.hoverAnimation}
-          hoverCb={props.hoverCb}
+          data={data}
+          width={width}
+          height={height}
+          {...other}
         />
       </g>
     </Chart>
@@ -26,26 +22,18 @@ const Treemap = (props) => {
 
 Treemap.propTypes = {
   data: PropTypes.array,
+  title: PropTypes.string,
   width: PropTypes.number,
   height: PropTypes.number,
-  title: PropTypes.string,
   textColor: PropTypes.string,
-  fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  colors: PropTypes.func,
-  colorAccessor: PropTypes.func,
-  hoverAnimation: PropTypes.bool,
 };
 
 Treemap.defaultProps = {
-  hoverAnimation: true,
   data: [],
+  title: '',
   width: 400,
   height: 200,
-  title: '',
   textColor: '#f7f7f7',
-  fontSize: '0.85em',
-  colors: d3.scale.category20c(),
-  colorAccessor: (d, idx) => idx,
 };
 
 export default Treemap;

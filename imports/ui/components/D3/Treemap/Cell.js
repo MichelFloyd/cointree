@@ -15,7 +15,7 @@ class Cell extends React.Component {
     this.unHighlight = this.unHighlight.bind(this);
   }
 
-  highlight(ev) {
+  highlight() {
     this.setState({
       style: {
         stroke: 'white',
@@ -36,41 +36,40 @@ class Cell extends React.Component {
   }
 
   render() {
-    const { props } = this;
+    const { width, height, fill, label, fontSize, x, y } = this.props;
     const textStyle = {
       textAnchor: 'middle',
       fill: this.state.style.stroke,
-      fontSize: props.fontSize,
+      fontSize: fontSize,
     };
-    const t = `translate(${props.x},${props.y})`;
+    const t = `translate(${x},${y})`;
 
     return (
       <g transform={t}>
         <rect
           className="rd3-treemap-cell"
-          width={props.width}
-          height={props.height}
+          width={width}
+          height={height}
           style={this.state.style}
-          fill={props.fill}
+          fill={fill}
           onMouseOver={this.highlight}
           onMouseLeave={this.unHighlight}
           onFocus={this.highlight}
         />
 
-        { props.fontSize < 0.9 * props.height && props.label &&
-          props.fontSize * props.label.length < 0.9 * props.width ?
-            <text
-              x={props.width / 2}
-              y={props.height / 2}
-              dy=".35em"
-              style={textStyle}
-              className="rd3-treemap-cell-text"
-              onMouseOver={this.highlight}
-              onMouseLeave={this.unHighlight}
-              onFocus={this.highlight}
-            >
-              {props.label}
-            </text>
+        { fontSize < 0.9 * height && label && fontSize * label.length < 0.9 * width ?
+          <text
+            x={width / 2}
+            y={height / 2}
+            dy=".35em"
+            style={textStyle}
+            className="rd3-treemap-cell-text"
+            onMouseOver={this.highlight}
+            onMouseLeave={this.unHighlight}
+            onFocus={this.highlight}
+          >
+            {label}
+          </text>
           : ''
         }
       </g>
@@ -84,7 +83,12 @@ Cell.propTypes = {
   height: PropTypes.number.isRequired,
   label: PropTypes.string,
   hoverCb: PropTypes.func.isRequired,
-  textColor: PropTypes.oneOf([PropTypes.string, PropTypes.number]).isRequired,
+  fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  textColor: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+};
+
+Cell.defaultProps = {
+  label: '',
 };
 
 export default Cell;

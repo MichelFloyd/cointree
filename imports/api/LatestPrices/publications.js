@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import LatestPrices from './LatestPrices';
 
 const now = new Date();
-const sixMinutesAgo = new Date(now - 3600000);
+const sixMinutesAgo = new Date(now - 36000000);
 const query = {
   market_cap_usd: { $gte: 50000000 },
   last_updated: { $gte: sixMinutesAgo },
