@@ -54,6 +54,7 @@ class Cell extends React.Component {
           fill={props.fill}
           onMouseOver={this.highlight}
           onMouseLeave={this.unHighlight}
+          onFocus={this.highlight}
         />
 
         { props.fontSize < 0.9 * props.height && props.label &&
@@ -64,6 +65,9 @@ class Cell extends React.Component {
               dy=".35em"
               style={textStyle}
               className="rd3-treemap-cell-text"
+              onMouseOver={this.highlight}
+              onMouseLeave={this.unHighlight}
+              onFocus={this.highlight}
             >
               {props.label}
             </text>
