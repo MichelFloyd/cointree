@@ -15,7 +15,7 @@ class Cell extends React.Component {
     this.unHighlight = this.unHighlight.bind(this);
   }
 
-  highlight() {
+  highlight(ev) {
     this.setState({
       style: {
         stroke: 'white',
@@ -39,7 +39,7 @@ class Cell extends React.Component {
     const { props } = this;
     const textStyle = {
       textAnchor: 'middle',
-      fill: props.textColor,
+      fill: this.state.style.stroke,
       fontSize: props.fontSize,
     };
     const t = `translate(${props.x},${props.y})`;
@@ -83,6 +83,8 @@ Cell.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
   label: PropTypes.string,
+  hoverCb: PropTypes.func.isRequired,
+  textColor: PropTypes.oneOf([PropTypes.string, PropTypes.number]).isRequired,
 };
 
 export default Cell;
