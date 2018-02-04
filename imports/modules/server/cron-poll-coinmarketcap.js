@@ -15,7 +15,6 @@ SyncedCron.add({
   job() {
     HTTP.get(url, (err, response) => {
       if (!err) {
-
         // use bulk upserts, see https://forums.meteor.com/t/bulk-upsert-issue-with-mongo-id-solved/31807
         const Bulk1 = Prices._collection.rawCollection().initializeUnorderedBulkOp();
         const Bulk2 = LatestPrices._collection.rawCollection().initializeUnorderedBulkOp();
@@ -44,7 +43,7 @@ SyncedCron.add({
               if (previousPrice && (price.last_updated > previousPrice.last_updated)) {
                 price.percent_change_last = (100 * (price.price_usd - previousPrice.price_usd)) /
                 previousPrice.price_usd;
-                price.percent_change_last = parseFloat(Math.round(price.percent_change_last * 100) / 100).toFixed(2);
+                price.percent_change_last = Math.round(parseFloat(Math.round(price.percent_change_last * 100))) / 100;
               }
 
               if (!previousPrice || (price.last_updated > previousPrice.last_updated)) {
