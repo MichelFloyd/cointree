@@ -1,11 +1,13 @@
 .SymbolPopup {
   color: #eee;
   position: absolute;
-  top: 418px;
+  top: 113px;
   left: 43px;
-  width: 210px;
+  width: 280px;
+  padding: 5px;
   font-size: 11px;
   background-color: #222;
+  box-shadow: 4px 4px 2px grey;
   opacity: 0.7;
   em { 
     font-style: normal;

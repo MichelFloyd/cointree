@@ -9,17 +9,18 @@ const SymbolPopup = ({ data }) => (
     Symbol: <em>{data.symbol}</em>&nbsp;
     Name: <em>{data.name}</em>&nbsp;
     Rank: <em>{data.rank}</em><br />
-    Price (USD): <em>{data.price_usd}</em><br />
+    Price (USD): <em>{data.price_usd}</em>&nbsp;
     Price (BTC): <em>{data.price_btc}</em><br />
+    Cap (USD): <em>{formatCurrency(data.market_cap_usd)}</em>&nbsp;
     Volume 24h (USD): <em>{formatCurrency(data.volume_usd_24h)}</em><br />
-    Cap (USD): <em>{formatCurrency(data.market_cap_usd)}</em><br />
-    Available Supply (USD): <em>{formatCurrency(data.available_supply)}</em><br />
-    Total Supply (USD): <em>{formatCurrency(data.total_supply)}</em><br />
-    Max Supply (USD): <em>{formatCurrency(data.max_supply)}</em><br />
+    Supply (USD):&nbsp;
+    Avail: <em>{formatCurrency(data.available_supply)}</em>&nbsp;
+    Total: <em>{formatCurrency(data.total_supply)}</em>&nbsp;
+    Max: <em>{formatCurrency(data.max_supply)}</em><br />
     % Last Change:&nbsp;
     <em className={data.percent_change_last < 0 ? 'down' : 'up'}>
       {data.percent_change_last}
-    </em><br />
+    </em>&nbsp;
     % Change 1h:&nbsp;
     <em className={data.percent_change_1h < 0 ? 'down' : 'up'}>
       {data.percent_change_1h}
@@ -27,12 +28,12 @@ const SymbolPopup = ({ data }) => (
     % Change 24h:&nbsp;
     <em className={data.percent_change_24h < 0 ? 'down' : 'up'}>
       {data.percent_change_24h}
-    </em><br />
+    </em>&nbsp;
     % Change 7d:&nbsp;
     <em className={data.percent_change_7d < 0 ? 'down' : 'up'}>
       {data.percent_change_7d}
     </em><br />
-    Last Updated: <em>{data.last_updated.toLocaleDateString()}</em>
+    Last Updated: <em>{data.last_updated.toLocaleDateString()} {data.last_updated.toLocaleTimeString()}</em>
   </div>
 );
 
