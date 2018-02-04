@@ -16,6 +16,7 @@ class Treemap extends React.Component {
     super(props, context);
     this.setSize = this.setSize.bind(this);
     this.setColor = this.setColor.bind(this);
+    this.hoverCb = this.hoverCb.bind(this);
 
     this.sizeMenu = ['Market Cap', 'Volume 24h'];
     this.colorMenu = ['Last Change', '1h Change', '24h Change', '7d Change'];
@@ -30,6 +31,7 @@ class Treemap extends React.Component {
       colors,
       totalCap,
       vol24h,
+      hoverSymbol: null,
     };
   }
 
@@ -94,6 +96,10 @@ class Treemap extends React.Component {
     };
   }
 
+  hoverCb(symbol) {
+    this.setState({ hoverSymbol: symbol });
+  }
+
   render() {
     const { loading } = this.props;
     return (!loading ? (
@@ -123,9 +129,11 @@ class Treemap extends React.Component {
             fontSize={14}
             colors={this.state.colors}
             colorAccessor={p => p.value2}
+            hoverCb={this.hoverCb}
           />
         </div>
-        <SymbolPopup data={LatestPrices.findOne()} />
+        {this.state.hoverSymbol ?
+          <SymbolPopup data={LatestPrices.findOne({ symbol: this.state.hoverSymbol })} /> : '' }
       </div>
     ) : <Loading />);
   }

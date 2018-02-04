@@ -23,14 +23,11 @@ const DataSeries = ((props) => {
         width={node.dx}
         height={node.dy}
         fill={color}
-        label={
-          props.fontSize < 0.9 * node.dy &&
-          node.label &&
-          props.fontSize * node.label.length < 0.9 * node.dx ? node.label : ''
-        } // all this to ensure the symbol will fit in the cell
+        label={node.label}
         fontSize={props.fontSize}
         textColor={props.textColor}
         hoverAnimation={props.hoverAnimation}
+        hoverCb={props.hoverCb}
       />
     );
   }, this);

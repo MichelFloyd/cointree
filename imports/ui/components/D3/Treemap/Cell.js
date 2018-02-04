@@ -22,6 +22,7 @@ class Cell extends React.Component {
         strokeWidth: '3px',
       },
     });
+    this.props.hoverCb(this.props.label);
   }
 
   unHighlight() {
@@ -31,6 +32,7 @@ class Cell extends React.Component {
         strokeWidth: '1px',
       },
     });
+    this.props.hoverCb(null);
   }
 
   render() {
@@ -53,15 +55,20 @@ class Cell extends React.Component {
           onMouseOver={this.highlight}
           onMouseLeave={this.unHighlight}
         />
-        <text
-          x={props.width / 2}
-          y={props.height / 2}
-          dy=".35em"
-          style={textStyle}
-          className="rd3-treemap-cell-text"
-        >
-          {props.label}
-        </text>
+
+        { props.fontSize < 0.9 * props.height && props.label &&
+          props.fontSize * props.label.length < 0.9 * props.width ?
+            <text
+              x={props.width / 2}
+              y={props.height / 2}
+              dy=".35em"
+              style={textStyle}
+              className="rd3-treemap-cell-text"
+            >
+              {props.label}
+            </text>
+          : ''
+        }
       </g>
     );
   }

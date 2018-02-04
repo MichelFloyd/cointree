@@ -17,6 +17,7 @@ const Treemap = (props) => {
           textColor={props.textColor}
           fontSize={props.fontSize}
           hoverAnimation={props.hoverAnimation}
+          hoverCb={props.hoverCb}
         />
       </g>
     </Chart>
