@@ -4,5 +4,5 @@ import Prices from './Prices';
 
 Meteor.publish('symbol.history', function prices(symbol) {
   check(symbol, String);
-  return Prices.find({ symbol }, { limit: 1024 });
+  return Prices.find({ symbol }, { limit: 256 });
 });

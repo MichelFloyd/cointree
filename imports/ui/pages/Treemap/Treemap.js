@@ -36,23 +36,20 @@ class Treemap extends React.Component {
   }
 
   componentWillReceiveProps() {
-    const { data, colors, totalCap, vol24h } = this.getData();
-    this.setState({ data, colors, totalCap, vol24h });   
+    this.setState(this.getData());
   }
 
   setSize(ekey) {
     this.setState({ radioSize: ekey });
     Meteor.defer(() => {
-      const { data, colors, totalCap, vol24h } = this.getData();
-      this.setState({ data, colors, totalCap, vol24h });
+      this.setState(this.getData());
     });
   }
 
   setColor(ekey) {
     this.setState({ radioColor: ekey });
     Meteor.defer(() => {
-      const { data, colors, totalCap, vol24h } = this.getData();
-      this.setState({ data, colors, totalCap, vol24h });
+      this.setState(this.getData());
     });
   }
 
@@ -121,7 +118,7 @@ class Treemap extends React.Component {
         </div>
         <div className="Treemap">
           <TreeMap
-            height={500}
+            height={window.innerHeight - 200}
             width={window.innerWidth - 80}
             data={this.state.data}
             valueUnit="USD"

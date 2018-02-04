@@ -9,6 +9,8 @@ import formatCurrency from '../../../modules/format-currency';
 
 import './index.scss';
 
+const upDown = value => (<td className={value < 0 ? 'down' : 'up'}>{value}</td>);
+
 const Prices = ({ loading, prices, symbol }) => (!loading ? (
   <div className="Prices">
     <div className="page-header clearfix">
@@ -39,10 +41,10 @@ const Prices = ({ loading, prices, symbol }) => (!loading ? (
               <td>{formatCurrency(market_cap_usd)}</td>
               <td>{price_btc}</td>
               <td>{formatCurrency(volume_usd_24h)}</td>
-              <td className={percent_change_last < 0 ? 'down' : 'up'}>{percent_change_last}</td>
-              <td className={percent_change_1h < 0 ? 'down' : 'up'}>{percent_change_1h}</td>
-              <td className={percent_change_24h < 0 ? 'down' : 'up'}>{percent_change_24h}</td>
-              <td className={percent_change_7d < 0 ? 'down' : 'up'}>{percent_change_7d}</td>
+              {upDown(percent_change_last)}
+              {upDown(percent_change_1h)}
+              {upDown(percent_change_24h)}
+              {upDown(percent_change_7d)}
               <td>{last_updated.toLocaleDateString()} {last_updated.toLocaleTimeString()}</td>
             </tr>
           ))}
