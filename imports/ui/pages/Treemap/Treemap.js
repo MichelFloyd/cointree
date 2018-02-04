@@ -7,6 +7,7 @@ import d3 from 'd3';
 import Loading from '../../components/Loading/Loading';
 import LatestPrices from '../../../api/LatestPrices/LatestPrices';
 import TreeMap from '../../components/D3/Treemap/Treemap';
+import SymbolPopup from '../../components/SymbolPopup/SymbolPopup';
 
 import './index.scss';
 
@@ -124,6 +125,7 @@ class Treemap extends React.Component {
             colorAccessor={p => p.value2}
           />
         </div>
+        <SymbolPopup data={LatestPrices.findOne()} />
       </div>
     ) : <Loading />);
   }

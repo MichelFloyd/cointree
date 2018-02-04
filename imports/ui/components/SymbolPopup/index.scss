@@ -1,0 +1,20 @@
+.SymbolPopup {
+  color: #eee;
+  position: absolute;
+  top: 418px;
+  left: 43px;
+  width: 210px;
+  font-size: 11px;
+  background-color: #222;
+  opacity: 0.7;
+  em { 
+    font-style: normal;
+    font-weight: bold;
+    &.up {
+      color: green;
+    }
+    &.down {
+      color: red;
+    }
+  }
+}
