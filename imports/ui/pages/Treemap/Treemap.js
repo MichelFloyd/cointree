@@ -35,22 +35,21 @@ class Treemap extends React.Component {
     };
   }
 
-  componentWillReceiveProps() {
-    this.setState(this.getData());
+  componentWillReceiveProps(newProps) {
+    if (!newProps.loading) {
+      console.log('component will receive props, not loading');
+      Meteor.defer(() => this.setState(this.getData()));
+    }
   }
 
   setSize(ekey) {
     this.setState({ radioSize: ekey });
-    Meteor.defer(() => {
-      this.setState(this.getData());
-    });
+    Meteor.defer(() => this.setState(this.getData()));
   }
 
   setColor(ekey) {
     this.setState({ radioColor: ekey });
-    Meteor.defer(() => {
-      this.setState(this.getData());
-    });
+    Meteor.defer(() => this.setState(this.getData()));
   }
 
   getData() {
