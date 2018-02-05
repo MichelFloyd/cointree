@@ -99,6 +99,7 @@ class Treemap extends React.Component {
 
   render() {
     const { loading } = this.props;
+    const width = $('.navbar-header').offset() ? window.innerWidth - (2 * $('.navbar-header').offset().left) : 500;
     return (!loading ? (
       <div className="Treemap">
         <div className="TreemapControls">
@@ -119,7 +120,7 @@ class Treemap extends React.Component {
         <div className="Treemap">
           <TreeMap
             height={window.innerHeight - 200}
-            width={window.innerWidth - 80}
+            width={width}
             data={this.state.data}
             valueUnit="USD"
             textColor="#ccc"
