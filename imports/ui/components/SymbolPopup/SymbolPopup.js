@@ -7,7 +7,7 @@ import './index.scss';
 const upDown = value => (<em className={value < 0 ? 'down' : 'up'}>{value}</em>);
 
 const SymbolPopup = ({ data }) => (
-  <div className="SymbolPopup">
+  <div className="SymbolPopup" style={{ right: $('.navbar-header') ? $('.navbar-header').offset().left : '5px' }}>
     Symbol: <em>{data.symbol}</em>&nbsp;
     Name: <em>{data.name}</em>&nbsp;
     Rank: <em>{data.rank}</em><br />
@@ -23,7 +23,7 @@ const SymbolPopup = ({ data }) => (
     1h: {upDown(data.percent_change_1h)}&nbsp;
     24h: {upDown(data.percent_change_24h)}&nbsp;
     7d: {upDown(data.percent_change_7d)}<br />
-    Last Updated: <em>{data.last_updated.toLocaleDateString()} {data.last_updated.toLocaleTimeString()}</em>
+    {/* Last Updated: <em>{data.last_updated.toLocaleDateString()} {data.last_updated.toLocaleTimeString()}</em> */}
   </div>
 );
 

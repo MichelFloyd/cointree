@@ -36,10 +36,8 @@ class Treemap extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (!newProps.loading) {
-      console.log('component will receive props, not loading');
-      Meteor.defer(() => this.setState(this.getData()));
-    }
+    // important to defer the change of state so that it actually happens
+    if (!newProps.loading) Meteor.defer(() => this.setState(this.getData()));
   }
 
   setSize(ekey) {
