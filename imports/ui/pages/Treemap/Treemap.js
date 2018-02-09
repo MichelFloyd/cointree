@@ -127,8 +127,7 @@ class Treemap extends React.Component {
             hoverCb={this.hoverCb}
           />
         </div>
-        {this.state.hoverSymbol ?
-          <SymbolPopup data={LatestPrices.findOne({ symbol: this.state.hoverSymbol })} /> : '' }
+        <SymbolPopup data={LatestPrices.findOne({ symbol: this.state.hoverSymbol })} />
       </div>
     ) : <Loading />);
   }
