@@ -13,7 +13,7 @@ const Footer = () => (
   <div className="Footer">
     <Grid>
       <p className="pull-left">
-        &copy; {copyrightYear()} Cointree by Cloak Security.
+        &copy; {copyrightYear()} Cointreemap by Cloak Security.
         Data provided by <a href='https://coinmarketcap.com/'>CoinMarketCap</a>
       </p>
       {/* <ul className="pull-right">
