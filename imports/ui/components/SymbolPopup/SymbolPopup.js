@@ -16,7 +16,7 @@ const SymbolPopup = ({ data }) => (
       Price (BTC): <em>{data.price_btc}</em><br />
       Cap (USD): <em>{formatCurrency(data.market_cap_usd)}</em>&nbsp;
       Volume 24h (USD): <em>{formatCurrency(data.volume_usd_24h)}</em><br />
-      Supply (USD):&nbsp;
+      Supply:&nbsp;
       Avail: <em>{formatCurrency(data.available_supply)}</em>&nbsp;
       Total: <em>{formatCurrency(data.total_supply)}</em>&nbsp;
       Max: <em>{formatCurrency(data.max_supply)}</em><br />
