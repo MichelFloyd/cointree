@@ -1,5 +1,5 @@
 ### Cointree
-A cryptocurrency treemap visualization built with [Meteor](https://www.meteor.com/) using the [pup boilerplate](http://cleverbeagle.com/pup) [react](https://reactjs.org/), and [D3js](https://d3js.org/).
+A cryptocurrency treemap visualization built with [Meteor](https://www.meteor.com/) using the [pup boilerplate](http://cleverbeagle.com/pup), [react](https://reactjs.org/), and [D3js](https://d3js.org/).
 
 This application demonstrates several useful patterns in Meteor including:
 * polling a 3rd party HTTP endpoint for data [coinmarketcap](https://coinmarketcap.com)
