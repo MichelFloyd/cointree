@@ -140,8 +140,9 @@ Treemap.propTypes = {
 
 export default withTracker(() => {
   const sub = Meteor.subscribe('latestPrices');
+  const LP = LatestPrices.find();
   return {
-    loading: !sub.ready(),
-    prices: LatestPrices.find().fetch(),
+    loading: !sub.ready() || !LP.count(),
+    prices: LP.fetch(),
   };
 })(Treemap);
