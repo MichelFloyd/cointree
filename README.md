@@ -17,9 +17,13 @@ The [percolate:synced-cron](https://github.com/percolatestudio/meteor-synced-cro
 The Treemap is defined as a page [here](imports/ui/pages/Treemap/Treemap.js). As you might know, react and D3 don't really get along very well as both want to control the DOM directly. My react D3 code came from the [rd3](https://github.com/yang-wei/rd3) project which unfortunately isn't maintained anymore. I had to make a number of corrections and adaptations to make it work for this use case, particularly to color code each currency based on price changes.
 
 #### Run the app locally
+1. Make sure Meteor and npm are installed
 1. clone this repo
 1. `npm install`
 1. `npm start`
+1. Open [localhost:3000](http://localhost:3000) in your browser
+
+You may have to wait up to 3 minutes for the first data to be available.
 
 #### Screenshot
 ![cointreemap screenshot](cointreemap.png)
